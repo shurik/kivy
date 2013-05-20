@@ -7,6 +7,14 @@
     on_press: root.parent.parent.parent.show_kv(*args)
     state: ctx.state if hasattr(ctx, "state") else "normal"
 
+<Container>:
+	canvas.before:
+		Color:
+			rgb: 0, 0, 0
+		Rectangle:
+			pos: self.pos
+			size: self.size
+
 <Catalog>:
     language_box: language_box
     screen_manager: screen_manager
@@ -125,6 +133,7 @@
                         valign: "top"
                         text: "This box will display the kivy language for whatever has been selected"
                         on_text: root.schedule_reload()
+                        on_cursor: root.schedule_reload()
                 BoxLayout:
                     size_hint: 1, None
                     height: '30pt'

@@ -19,7 +19,8 @@ c_options = {
     'use_glew': False,
     'use_sdl': False,
     'use_ios': False,
-    'use_mesagl': 'USE_MESAGL' in environ}
+    'use_mesagl': False,
+    'use_x11': False}
 
 # now check if environ is changing the default values
 for key in c_options.keys():
@@ -360,7 +361,7 @@ if platform in ('darwin', 'ios'):
     sources['core/image/img_imageio.pyx'] = merge(
         base_flags, osx_flags)
 
-if 'WITH_X11' in environ:
+if c_options['use_x11']:
     sources['core/window/window_x11.pyx'] = merge(
         base_flags, gl_flags, graphics_flags, {
             'depends': [join(dirname(__file__),
@@ -426,6 +427,7 @@ setup(
         'hardware-accelerated multitouch applications.'),
     ext_modules=ext_modules,
     cmdclass=cmdclass,
+    scripts=['kivy/tools/garden'],
     packages=[
         'kivy',
         'kivy.adapters',
@@ -439,6 +441,7 @@ setup(
         'kivy.core.text',
         'kivy.core.video',
         'kivy.core.window',
+        'kivy.effects',
         'kivy.ext',
         'kivy.graphics',
         'kivy.input',

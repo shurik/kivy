@@ -28,7 +28,7 @@ __all__ = (
     'kivy_config_fn', 'kivy_usermodules_dir',
 )
 
-__version__ = '1.6.1-dev'
+__version__ = '1.8.0-dev'
 
 import sys
 import shutil
@@ -382,6 +382,6 @@ if not environ.get('KIVY_DOC_INCLUDE'):
         Config.remove_section('input')
         Config.add_section('input')
 
-    if platform() == 'android': 
+    if platform() == 'android':
         Config.set('input', 'androidtouch', 'android')
 
